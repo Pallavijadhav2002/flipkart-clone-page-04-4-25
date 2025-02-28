@@ -5,7 +5,7 @@ import Banner from "./components/Banner";
 import ProductSection from "./components/ProductSection";
 import Footer from "./components/Footer";
 import PromotionalCards from "./components/PromotionalCards";
-
+import FloatingCart from "./components/FloatingCart";
 function App() {
   // Example products
   const bestOfElectronics = [
@@ -107,6 +107,7 @@ function App() {
         <ProductSection title="Best of Electronics" products={bestOfElectronics} />
         <ProductSection title="Beauty, Food, Toys & More" products={beautyAndToys} />
       </div>
+      <FloatingCart />  {/* Add this component */}
 
       <Footer />
     </>
