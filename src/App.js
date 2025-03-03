@@ -1,4 +1,5 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Categories from "./components/Categories";
 import Banner from "./components/Banner";
@@ -6,8 +7,62 @@ import ProductSection from "./components/ProductSection";
 import Footer from "./components/Footer";
 import PromotionalCards from "./components/PromotionalCards";
 import FloatingCart from "./components/FloatingCart";
+import ProductPage from "./components/pages/ProductPage";
+import "./styles.css";
+import products from "./data/product.json"; // Import product.json
+
+
 function App() {
   // Example products
+  const fashion = [
+    {
+      id: 1,
+      name: "Black Jacket",
+      image:
+     "https://rukminim1.flixcart.com/image/580/696/k2z1t3k0/jacket/5/d/z/9-10-years-abjkcrgfx19327-allen-solly-original-imafm4kftqz5ksgt.jpeg?q=50",
+      price: "₹1789",
+    },
+    {
+      id: 2,
+      name: "Embellished Sweatshirt",
+      image:
+"https://rukminim1.flixcart.com/image/434/521/kjbr8280-0/jacket/7/a/t/11-12-years-gj04-fort-collins-original-imafywuvnzkvvhxj.jpeg?q=50",        price: "₹999",
+    },
+    {
+      id: 3,
+      name: "Printed Jacket",
+      image:
+"https://rukminim1.flixcart.com/image/434/521/kfmv9u80/sweatshirt/h/m/v/5-6-years-mcbaw20ss009b-miss-chief-original-imafwfyvmgefy4tw.jpeg?q=50",        price: "₹2400",
+    },
+    {
+      id: 4,
+      name: "Winter Gloves",
+      image:
+"https://rukminim1.flixcart.com/image/434/521/ke1pnrk0/glove/c/w/u/free-reusable-washable-knitted-winter-cotton-gloves-bundle-grey-original-imafusmyse4nzcvx.jpeg?q=50",        price: "₹299",
+    },
+    {
+      id: 5,
+      name: "Women Dress",
+      image:
+        "https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/e/u/z/s-ttsh001525-tokyo-talkies-original-imagthfyedpyhcfh.jpeg?q=70",
+        price: "₹467",
+    },
+    {
+      id: 6,
+      name: "Kanjivaram Saree",
+      image:
+      "https://rukminim2.flixcart.com/image/612/612/xif0q/sari/m/b/q/free-jac02-anjavi-fashion-unstitched-original-imah87ymhhecswer.jpeg?q=70",   
+      price: "₹1299",
+    },
+    {
+      id: 7,
+      name: "Regular High Rise Light Blue Jeans",
+      image:
+      "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/u/j/u/32-kttladiesjeans2915-kotty-original-imah6zjvz3etuw9g.jpeg?q=70",    
+      price: "₹550",
+    },
+  ];
+
   const bestOfElectronics = [
     {
       name: "Smart Watch",
@@ -103,13 +158,33 @@ function App() {
       <Banner />
       <PromotionalCards />
       
+      <Routes>
+        {/* Home Page with Product Sections */}
+        <Route
+          path="/"
+          element={
+            <div className="content-wrapper">
+              <ProductSection title="New Arrival Clothes" products={products} />
+            </div>
+          }
+        />
+
+        {/* Product Details Page Route */}
+        <Route path="/product/:productId" element={<ProductPage />} />
+      </Routes>
+       
       <div className="content-wrapper">
+        <ProductSection title="New Arrival cloths" products={fashion} /> 
         <ProductSection title="Best of Electronics" products={bestOfElectronics} />
+        <ProductSection title="New Arrival cloths" products={fashion} /> 
         <ProductSection title="Beauty, Food, Toys & More" products={beautyAndToys} />
       </div>
-      <FloatingCart />  {/* Add this component */}
 
+      
+      <FloatingCart />  {/* Add this component */}
+      
       <Footer />
+
     </>
   );
 }

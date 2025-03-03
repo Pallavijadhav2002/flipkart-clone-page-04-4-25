@@ -1,0 +1,135 @@
+[
+    {
+      "id": 1,
+      "displayName": "Full Sleeve Solid Men Sweater",
+      "img": "https://rukminim1.flixcart.com/image/580/696/kh2b4i80/sweatshirt/s/g/g/m-pjstjrgfk62096-peter-england-original-imafx5qevgd3gftr.jpeg?q=50",
+      "brand": "Peter England",
+      "price": 900,
+      "basePrice": 1300,
+      "idealFor": "Men",
+      "size": "M",
+      "rating": 4.5
+    },
+    {
+      "id": 2,
+      "displayName": "Full Sleeve Solid Men Quilted Jacket",
+      "img": "https://rukminim1.flixcart.com/image/580/696/kr9jafk0/jacket/w/y/v/m-14740-fk-breil-by-fort-collins-original-imag538azcwwpyzb.jpeg?q=50",
+      "brand": "Fort Collins",
+      "price": 866,
+      "basePrice": 2465,
+      "idealFor": "Men",
+      "size": "L",
+      "rating": 4.2
+    },
+    {
+      "id": 3,
+      "displayName": "Full Sleeve Solid Men Quilted Jacket",
+      "img": "https://rukminim1.flixcart.com/image/434/521/kh5607k0/jacket/z/m/n/l-pv-2501-magenta-pivl-original-imafx7ghrph3qmmb.jpeg?q=50",
+      "brand": "Darzi",
+      "price": 498,
+      "basePrice": 1499,
+      "idealFor": "Women",
+      "size": "L",
+      "rating": 4.0
+    },
+    {
+      "id": 4,
+      "displayName": "Black Jacket",
+      "img": "https://rukminim1.flixcart.com/image/580/696/k2z1t3k0/jacket/5/d/z/9-10-years-abjkcrgfx19327-allen-solly-original-imafm4kftqz5ksgt.jpeg?q=50",
+      "brand": "Allen Solly",
+      "price": 1789,
+      "basePrice": 2399,
+      "idealFor": "Men & Women",
+      "size": "M",
+      "rating": 4.7
+    },
+    {
+      "id": 5,
+      "displayName": "Winter Gloves",
+      "img": "https://rukminim1.flixcart.com/image/434/521/ke1pnrk0/glove/c/w/u/free-reusable-washable-knitted-winter-cotton-gloves-bundle-grey-original-imafusmyse4nzcvx.jpeg?q=50",
+      "brand": "Peter England",
+      "price": 200,
+      "basePrice": 299,
+      "idealFor": "Men & Women",
+      "size": "S",
+      "rating": 3.8
+    },
+    {
+      "id": 6,
+      "displayName": "Printed Jacket",
+      "img": "https://rukminim1.flixcart.com/image/434/521/kfmv9u80/sweatshirt/h/m/v/5-6-years-mcbaw20ss009b-miss-chief-original-imafwfyvmgefy4tw.jpeg?q=50",
+      "brand": "PUMA",
+      "price": 2400,
+      "basePrice": 2999,
+      "idealFor": "Boys",
+      "size": "S",
+      "rating": 4.6
+    },
+    {
+      "id": 7,
+      "displayName": "Embellished Sweatshirt",
+      "img": "https://rukminim1.flixcart.com/image/434/521/kebpqq80/sweatshirt/k/c/s/11-12-years-agstergf402586-allen-solly-original-imafvff7brqkx4xd.jpeg?q=50",
+      "brand": "Allen Solly",
+      "price": 1800,
+      "basePrice": 1999,
+      "idealFor": "Girls",
+      "size": "L",
+      "rating": 4.3
+    },
+    {
+      "id": 8,
+      "displayName": "Women Dress",
+      "img": "https://rukminim2.flixcart.com/image/612/612/xif0q/shirt/e/u/z/s-ttsh001525-tokyo-talkies-original-imagthfyedpyhcfh.jpeg?q=70",
+      "brand": "Allen Solly",
+      "price": 700,
+      "basePrice": 2999,
+      "idealFor": "Girls",
+      "size": "S",
+      "rating": 4.4
+    },
+    {
+      "id": 9,
+      "displayName": "Kanjivaram Saree",
+      "img": "https://rukminim2.flixcart.com/image/612/612/xif0q/sari/m/b/q/free-jac02-anjavi-fashion-unstitched-original-imah87ymhhecswer.jpeg?q=70",   
+      "brand": "Darzi",
+      "price": 1400,
+      "basePrice": 3999,
+      "idealFor": "Women",
+      "size": "S",
+      "rating": 4.5
+    },
+    {
+      "id": 10,
+      "displayName": "Printed Jacket",
+      "img": "https://rukminim1.flixcart.com/image/434/521/kfmv9u80/sweatshirt/h/m/v/5-6-years-mcbaw20ss009b-miss-chief-original-imafwfyvmgefy4tw.jpeg?q=50",
+      "brand": "PUMA",
+      "price": 2400,
+      "basePrice": 2999,
+      "idealFor": "Boys",
+      "size": "S",
+      "rating": 4.6
+    },
+    {
+      "id": 11,
+      "displayName": "Jeans",
+      "img": "https://rukminim2.flixcart.com/image/612/612/xif0q/jean/u/j/u/32-kttladiesjeans2915-kotty-original-imah6zjvz3etuw9g.jpeg?q=70",    
+      "brand": "PUMA",
+      "price": 2560,
+      "basePrice": 3999,
+      "idealFor": "Girls",
+      "size": "M",
+      "rating": 4.6
+    },
+    {
+      "id": 12,
+      "displayName": "Printed Jacket",
+      "img": "https://rukminim1.flixcart.com/image/434/521/kfmv9u80/sweatshirt/h/m/v/5-6-years-mcbaw20ss009b-miss-chief-original-imafwfyvmgefy4tw.jpeg?q=50",
+      "brand": "PUMA",
+      "price": 2400,
+      "basePrice": 2999,
+      "idealFor": "Boys",
+      "size": "S",
+      "rating": 4.6
+    }
+  ]
+  
