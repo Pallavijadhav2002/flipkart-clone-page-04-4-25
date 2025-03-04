@@ -9,7 +9,10 @@ import PromotionalCards from "./components/PromotionalCards";
 import FloatingCart from "./components/FloatingCart";
 import ProductPage from "./components/pages/ProductPage";
 import "./styles.css";
-import products from "./data/product.json"; // Import product.json
+import ProductGrid from "./ProductGrid";
+import ProductDetails from "./ProductDetails";
+import products from "./data/product.json"; // ✅ Correct Import
+import ProductDetailsPage from "./components/pages/ProductDetailsPage";
 
 
 function App() {
@@ -170,11 +173,10 @@ function App() {
         />
 
         {/* Product Details Page Route */}
-        <Route path="/product/:productId" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductDetailsPage />} />
       </Routes>
        
       <div className="content-wrapper">
-        <ProductSection title="New Arrival cloths" products={fashion} /> 
         <ProductSection title="Best of Electronics" products={bestOfElectronics} />
         <ProductSection title="New Arrival cloths" products={fashion} /> 
         <ProductSection title="Beauty, Food, Toys & More" products={beautyAndToys} />
@@ -184,7 +186,8 @@ function App() {
       <FloatingCart />  {/* Add this component */}
       
       <Footer />
-
+   
+      
     </>
   );
 }

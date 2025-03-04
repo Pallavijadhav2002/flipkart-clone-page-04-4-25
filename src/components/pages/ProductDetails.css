@@ -1,77 +1,186 @@
-.product-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    background-color: #f5f5f5;
-    min-height: 100vh;
-  }
-  
-  .product-container {
-    display: flex;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 900px;
-    width: 100%;
-  }
-  
-  .product-image {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .product-info {
-    flex: 1;
-    margin-left: 20px;
-  }
-  
-  .product-brand {
-    font-size: 18px;
-    color: gray;
-  }
-  
-  .product-price {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff5722;
-  }
-  
-  .product-base-price {
-    text-decoration: line-through;
-    color: gray;
-    font-size: 18px;
-  }
-  
-  .product-rating {
-    font-size: 18px;
-    color: #ffb400;
-  }
-  
-  .buy-now-btn,
-  .add-to-cart-btn {
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-right: 10px;
-    transition: background 0.3s;
-  }
-  
-  .buy-now-btn:hover,
-  .add-to-cart-btn:hover {
-    background-color: #e64a19;
-  }
-  
-  .not-found {
-    font-size: 24px;
-    color: red;
-    text-align: center;
-  }
-  
+.product-details {
+  display: flex;
+  padding: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.product-images {
+  flex: 1;
+  padding: 10px;
+}
+
+.product-images img {
+  max-width: 100%;
+  height: 90%;
+  border-radius: 8px;
+}
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.action-buttons button {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-buttons .add-to-cart {
+  background-color: #ffd700;
+  color: #fff;
+}
+.action-buttons .add-to-cart:hover {
+  background-color: #e6b800;
+}
+
+.action-buttons .buy-now {
+  background-color: #ff4500;
+  color: #fff;
+}
+
+.action-buttons .buy-now:hover {
+  background-color: #e63900;
+}
+.product-info {
+  flex: 2;
+  padding: 10px;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.price-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.price-section .price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #B12704;
+  margin-right: 16px;
+}
+
+.price-section .original-price {
+  font-size: 18px;
+  color: #555;
+  text-decoration: line-through;
+  margin-right: 16px;
+}
+
+.price-section .discount {
+  font-size: 18px;
+  color: #26a541;
+}
+
+.rating-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.rating-section .rating {
+  font-size: 18px;
+  color: #FFA41C;
+  margin-right: 8px;
+}
+
+.rating-section .reviews {
+  font-size: 14px;
+  color: #555;
+}
+
+.size-section {
+  margin-bottom: 12px;
+}
+
+.size-section p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.size-section .sizes {
+  display: flex;
+  gap: 8px;
+}
+
+.size-section .sizes button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.size-section .sizes button:hover {
+  border-color: #000;
+}
+
+.size-section .size-chart {
+  display: block;
+  margin-top: 8px;
+  color: #007185;
+  text-decoration: none;
+}
+
+.offers-section {
+  margin-bottom: 16px;
+}
+
+.offers-section h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.offers-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.offers-section ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.offers-section .more-offers {
+  color: #007185;
+  text-decoration: none;
+}
+
+.delivery-section {
+  margin-bottom: 16px;
+}
+
+.delivery-section p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.delivery-section input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.delivery-section button {
+  padding: 8px 16px;
+  background-color: #FFA41C;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delivery-section button:hover {
+  background-color: #FF8F00;
+}

@@ -1,25 +1,20 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "./ProductSection.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './ProductSection.css'; // Add CSS for styling
 
 const ProductSection = ({ title, products }) => {
-  const navigate = useNavigate();
-
   return (
     <div className="product-section">
-      <h2 className="section-title">{title}</h2>
-      <div className="product-grid">
-      {products.map((prod) => (
-          <div className="product-card" 
-          key={prod.id}
-          onClick={() => navigate(`/product/${prod.id}`)} // Navigate to Product Page
-            style={{ cursor: "pointer" }}
-          >
-            <img src={prod.image} alt={prod.displayName} loading="lazy" />
-            <p className="product-name">{prod.displayName}</p>
-            {prod.offer && <p className="product-offer">{prod.offer}</p>}
-            {prod.price && <p className="product-price">{prod.price}</p>}
-          </div>
+      <h2>{title}</h2>
+      <div className="product-list">
+        {products.map((product) => (
+          <Link to={`/product/${product.id}`} key={product.id} className="product-card">
+            <img src={product.image || product.img} alt={product.name || product.displayName} />
+            <h3>{product.name || product.displayName}</h3>
+            <p>Price: {product.price}</p>
+            {product.basePrice && <p>Original Price: {product.basePrice}</p>}
+            {product.rating && <p>Rating: {product.rating} ★</p>}
+          </Link>
         ))}
       </div>
     </div>
