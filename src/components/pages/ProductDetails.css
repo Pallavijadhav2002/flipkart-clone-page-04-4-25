@@ -3,11 +3,17 @@
   padding: 15px;
   max-width: 1400px;
   margin: 0 auto;
+  margin-bottom: 200px;
+  margin-top: 50px;
 }
 
 .product-images {
   flex: 1;
   padding: 10px;
+  margin-right: 80px;
+  margin-left: 80px;
+
+
 }
 
 .product-images img {

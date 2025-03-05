@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Categories from "./components/Categories";
@@ -9,13 +9,53 @@ import PromotionalCards from "./components/PromotionalCards";
 import FloatingCart from "./components/FloatingCart";
 import ProductPage from "./components/pages/ProductPage";
 import "./styles.css";
+import { FaSearch } from "react-icons/fa";
 import ProductGrid from "./ProductGrid";
 import ProductDetails from "./ProductDetails";
-import products from "./data/product.json"; // ✅ Correct Import
+import productsData from "./data/product.json"; // ✅ Rename the import to avoid conflicts
 import ProductDetailsPage from "./components/pages/ProductDetailsPage";
+import CartPage from "./components/pages/CartPage"; // Import Cart Page
 
 
 function App() {
+  const [products, setProducts] = useState(productsData);
+  const [filteredProducts, setFilteredProducts] = useState(productsData);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [cart, setCart] = useState([]);
+
+
+  useEffect(() => {
+    let updatedProducts = products;
+    if (selectedCategory !== "All") {
+      updatedProducts = updatedProducts.filter(
+        (product) => product.category === selectedCategory
+      );
+    }
+    if (searchQuery) {
+      updatedProducts = updatedProducts.filter((product) =>
+        product.displayName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    setFilteredProducts(updatedProducts);
+  }, [searchQuery, selectedCategory]);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const addToCart = (product) => {
+    setCart((prevCart) => {
+      const updatedCart = [...prevCart, product];
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
+    });
+  };
+
   // Example products
   const fashion = [
     {
@@ -157,22 +197,54 @@ function App() {
   return (
     <>
       <Navbar />
-      <Categories />
+      <Routes>
+  <Route path="/cart" element={<CartPage />} />
+</Routes>
+      <Categories onSelectCategory={handleCategoryChange} />
       <Banner />
       <PromotionalCards />
-      
+      {/* Search Bar */}
+<div className="search-bar-container">
+
+  <div className="search-bar">
+    <FaSearch className="search-icon" /> {/* Search Icon */}
+    <input
+      type="text"
+      placeholder="Search for products..."
+      value={searchQuery}
+      onChange={handleSearch}
+    />
+  </div>
+  {/* Category Filter Dropdown */}
+  <select
+    className="category-filter-dropdown"
+    value={selectedCategory}
+    onChange={(e) => handleCategoryChange(e.target.value)}
+  >
+    <option value="All">All Categories</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Clothing">Clothing</option>
+    <option value="Footwear">Footwear</option>
+    <option value="Beauty">Beauty</option>
+    <option value="Toys">Toys</option>
+  </select>
+</div>
+
+
+
       <Routes>
-        {/* Home Page with Product Sections */}
         <Route
           path="/"
           element={
             <div className="content-wrapper">
-              <ProductSection title="New Arrival Clothes" products={products} />
+              <ProductSection
+                title={selectedCategory === "All" ? "All Products" : selectedCategory}
+                products={filteredProducts}
+                addToCart={addToCart}
+              />
             </div>
           }
         />
-
-        {/* Product Details Page Route */}
         <Route path="/product/:id" element={<ProductDetailsPage />} />
       </Routes>
        

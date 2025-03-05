@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { FaSearch, FaShoppingCart, FaStore, FaUser, FaEllipsisV } from "react-icons/fa"; // Import FaEllipsisV
+import { useCart } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
+  const { cart } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showLoginDropdown, setShowLoginDropdown] = useState(false);
@@ -27,8 +30,6 @@ const Navbar = () => {
     <div className="navbar">
       {/* Left Section */}
       <div className="navbar-left">
-       
-
         {/* Logo */}
         <img
           className="navbar-logo"
@@ -78,14 +79,19 @@ const Navbar = () => {
 
         {/* Cart Icon */}
         <div className="cart">
+        <Link to="/cart">
           <FaShoppingCart />
-          <span>Cart</span>
+          <span>Cart  ({cart.length})</span>
+          </Link>
+      </div>
+
+      
+      {/* More Options as a Hamburger Menu */}
+      <div className="hamburger-more" onClick={toggleMobileMenu}>
+          <FaEllipsisV />
         </div>
       </div>
-      {/* More Options as a Hamburger Menu */}
-      <div className="hamburger-more">
-        <FaEllipsisV />
-        </div>
+
       {/* Mobile Menu */}
       {showMobileMenu && (
         <div className="mobile-menu">
