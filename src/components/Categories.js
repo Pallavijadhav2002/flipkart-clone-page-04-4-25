@@ -1,5 +1,7 @@
 import React from "react";
 import "./Categories.css";
+import { useNavigate } from "react-router-dom";
+
 
 const categoriesData = [
   { name: "Kilos", image: "https://rukminim2.flixcart.com/flap/80/80/image/29327f40e9c4d26b.png?q=100" },
@@ -13,10 +15,18 @@ const categoriesData = [
 ];
 
 const Categories = () => {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category) => {
+    if (category === "Fashion") {
+      window.location.href = "/fashion"; // ✅ This forces a full-page reload
+    }
+  };
+
   return (
     <div className="categories-container">
       {categoriesData.map((cat, index) => (
-        <div className="category-item" key={index}>
+        <div className="category-item" key={index} onClick={() => handleCategoryClick(cat.name)}>
           <img src={cat.image} alt={cat.name} />
           <p>{cat.name}</p>
         </div>

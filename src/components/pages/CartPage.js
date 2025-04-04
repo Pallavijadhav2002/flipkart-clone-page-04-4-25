@@ -2,6 +2,8 @@ import React from "react";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import "./CartPage.css";
+import { useNavigate } from "react-router-dom";
+
 
 const CartPage = () => {
   const { cart, removeFromCart, updateQuantity } = useCart();
@@ -10,6 +12,7 @@ const CartPage = () => {
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const discount = totalPrice * 0.1; // Example: 10% discount
   const finalPrice = totalPrice - discount;
+  const navigate = useNavigate();
 
   return (
     <div className="cart-container">
@@ -30,7 +33,7 @@ const CartPage = () => {
                   onError={(e) => (e.target.src = "/placeholder.jpg")} // ✅ Handles broken images
                 />
                 <div className="cart-info">
-                  <h3>{item.name}</h3>
+                  <p>{item.name}</p>
                   <p>Price: ₹{item.price}</p>
                   <div className="quantity-controls">
                     <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
@@ -51,8 +54,10 @@ const CartPage = () => {
             <p>Delivery: Free</p>
             <hr />
             <h2>Total: ₹{finalPrice}</h2>
-            <button className="place-order">PLACE ORDER</button>
-          </div>
+            <button onClick={() => navigate("/checkout")} className="btn btn-primary w-100">
+              ✅ Proceed to Checkout
+            </button>     
+            </div>
         </div>
       )}
     </div>

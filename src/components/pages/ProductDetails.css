@@ -5,6 +5,7 @@
   margin: 0 auto;
   margin-bottom: 200px;
   margin-top: 50px;
+  background-color: #fff;
 }
 
 .product-images {
@@ -189,4 +190,42 @@
 
 .delivery-section button:hover {
   background-color: #FF8F00;
+}
+/* General Responsive Fix */
+@media (max-width: 1024px) {
+  .product-details {
+    flex-direction: column;
+    padding: 10px;
+  }
+  .product-images {
+    margin: 0 auto;
+    text-align: center;
+  }
+  .product-info {
+    text-align: center;
+  }
+}
+
+/* Image Optimization */
+.product-images img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Adjust Action Buttons */
+.action-buttons {
+  flex-direction: row;
+  align-items: center;
+}
+.action-buttons button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Improve Delivery Section */
+
+
+.delivery-section input {
+  width: 80%;
+  max-width: 250px;
 }

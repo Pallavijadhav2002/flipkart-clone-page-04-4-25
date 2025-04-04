@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react"; // ✅ Add useMemo
 import { useParams } from "react-router-dom";
 import products from "../../data/product.json"; // ✅ Correct Import
 import { useCart } from "../../context/CartContext"; // Import Cart Context
@@ -13,29 +13,27 @@ const ProductDetails = () => {
     const foundProduct = products.find((p) => p.id === parseInt(id));
     setProduct(foundProduct);
   }, [id]);
+  // 🔹 Memoize discount calculation for performance
+  const discount = useMemo(() => {
+    return product && product.basePrice > product.price
+      ? Math.round(((product.basePrice - product.price) / product.basePrice) * 100)
+      : 0;
+  }, [product]);
 
   if (!product) return <div>Loading...</div>;
 
-  // Calculate discount percentage
-  const discount =
-    product.basePrice > product.price
-      ? Math.round(((product.basePrice - product.price) / product.basePrice) * 100)
-      : 0;
-
   return (
-    <div className="product-details">
+     <div className="product-details">
       <div className="product-images">
-        <img src={product.img || "/placeholder.jpg"} alt={product.displayName} />
+        <img src={product.img || "/placeholder.jpg"} alt={product.displayName} loading="lazy" />
         <div className="action-buttons">
-        <button className="add-to-cart" onClick={() => addToCart(product)}>Add to Cart</button>
-
+          <button className="add-to-cart" onClick={() => addToCart(product)}>Add to Cart</button>
           <button className="buy-now">Buy Now</button>
         </div>
       </div>
 
       <div className="product-info">
         <h2>{product.displayName}</h2>
-
         <div className="price-section">
           <p className="price">₹{product.price}</p>
           {product.basePrice > product.price && (
@@ -45,7 +43,6 @@ const ProductDetails = () => {
             </>
           )}
         </div>
-
         <div className="rating-section">
           <p className="rating">⭐ {product.rating}</p>
           <p className="reviews">49 ratings and 4 reviews</p>

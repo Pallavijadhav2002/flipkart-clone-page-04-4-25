@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Categories from "./components/Categories";
 import Banner from "./components/Banner";
@@ -9,12 +9,20 @@ import PromotionalCards from "./components/PromotionalCards";
 import FloatingCart from "./components/FloatingCart";
 import ProductPage from "./components/pages/ProductPage";
 import "./styles.css";
+import FashionPage from "./components/pages/FashionPage";
 import { FaSearch } from "react-icons/fa";
-import ProductGrid from "./ProductGrid";
-import ProductDetails from "./ProductDetails";
+import Orders from "./components/pages/Orders";
+import Login from "./components/Login/Login";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Signup from "./components/Login/Signup";
 import productsData from "./data/product.json"; // ✅ Rename the import to avoid conflicts
 import ProductDetailsPage from "./components/pages/ProductDetailsPage";
 import CartPage from "./components/pages/CartPage"; // Import Cart Page
+import Checkout from "./components/pages/Checkout";
+import AdminDashboard from "./components/AdminPages/AdminDashboard";
+import AdminLogin from "./components/AdminPages/AdminLogin";
+import PrivateRoute from "./components/AdminPages/PrivateRoute";
+
 
 
 function App() {
@@ -23,10 +31,19 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [cart, setCart] = useState([]);
+  const [sortOption, setSortOption] = useState("default"); // Sorting state
+  // 🔹 Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 7; // Show 7 products per page
+  const [priceRange, setPriceRange] = useState([0, 10000]);
 
+const handlePriceChange = (e) => {
+  const value = Number(e.target.value);
+  setPriceRange((prev) => [prev[0], value]); // Update max price only
+};
 
   useEffect(() => {
-    let updatedProducts = products;
+    let updatedProducts = [...products]; // Make a fresh copy
     if (selectedCategory !== "All") {
       updatedProducts = updatedProducts.filter(
         (product) => product.category === selectedCategory
@@ -37,8 +54,46 @@ function App() {
         product.displayName.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
+     // Sorting Logic
+    switch (sortOption) {
+      case "price-low-high":
+        updatedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "price-high-low":
+        updatedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case "newest-first":
+        updatedProducts.sort((a, b) => b.id - a.id); // Assuming higher ID means newer
+        break;
+      default:
+        break; // No sorting
+    }
+
+    // Apply Price Range Filter
+  updatedProducts = updatedProducts.filter(
+    (product) => product.price >= priceRange[0] && product.price <= priceRange[1]
+  );
+
     setFilteredProducts(updatedProducts);
-  }, [searchQuery, selectedCategory]);
+    setCurrentPage(1); // Reset to first page when filters change
+  }, [searchQuery, selectedCategory, sortOption, priceRange]); // Re-run when filters change
+  
+  
+  // 🔹 Pagination Logic: Slice products for the current page
+   const indexOfLastProduct = currentPage * productsPerPage;
+   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+   // 🔹 Handle Page Navigation
+  const nextPage = () => {
+    if (currentPage < Math.ceil(filteredProducts.length / productsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -197,14 +252,29 @@ function App() {
   return (
     <>
       <Navbar />
+    
+
       <Routes>
-  <Route path="/cart" element={<CartPage />} />
-</Routes>
+      <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
+     
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/signup" element={<Signup />} />
+       <Route path="/cart" element={<CartPage />} />
+       <Route path="/checkout" element={<Checkout />} />
+       <Route path="/orders" element={<Orders />} />
+
+       <Route path="/fashion" element={<FashionPage />} />
+
+       </Routes>
+      
       <Categories onSelectCategory={handleCategoryChange} />
+        
       <Banner />
       <PromotionalCards />
       {/* Search Bar */}
-<div className="search-bar-container">
+    <div className="search-bar-container">
 
   <div className="search-bar">
     <FaSearch className="search-icon" /> {/* Search Icon */}
@@ -228,9 +298,32 @@ function App() {
     <option value="Beauty">Beauty</option>
     <option value="Toys">Toys</option>
   </select>
+    {/* Sorting Dropdown */}
+    <select
+          className="sort-filter-dropdown"
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option value="default">Sort By</option>
+          <option value="price-low-high">Price: Low to High</option>
+          <option value="price-high-low">Price: High to Low</option>
+          <option value="newest-first">Newest First</option>
+         </select>
+       {/* Price Range Filter (Slider) */}
+<div className="price-slider-container">
+  <label>Max Price: ₹{priceRange[1]}</label>
+  <input
+    type="range"
+    min="0"
+    max="15000"
+    step="100"
+    value={priceRange[1]}
+    onChange={handlePriceChange}
+    className="price-slider"
+  />
 </div>
 
-
+      </div>  
 
       <Routes>
         <Route
@@ -238,9 +331,12 @@ function App() {
           element={
             <div className="content-wrapper">
               <ProductSection
-                title={selectedCategory === "All" ? "All Products" : selectedCategory}
-                products={filteredProducts}
-                addToCart={addToCart}
+                title="All Products"
+                products={currentProducts}
+                currentPage={currentPage}
+                totalPages={Math.ceil(filteredProducts.length / productsPerPage)}
+                nextPage={nextPage}
+                prevPage={prevPage}
               />
             </div>
           }
